@@ -1,0 +1,19 @@
+# Krona pie chart: Viewing the results
+
+Krona pie charts are **interactive** which means you can click between your different samples in the top left hand corner to compare them. You can also click onto one group to zoom into just that group. 
+
+You'll notice the named labels start with a letter: 
+
+-  k_ Kingdom (Bacteria)
+-  p_ Phylum 
+-  c_ Class
+-  o_ Order 
+-  f_ Family 
+-  g_ Genus
+-  s_ Species 
+
+There is also a **snapshot** button to download each image.
+
+From here you can compare your samples - can you find any patterns? What could this mean, can you search for those groups and species in the literature? 
+
+![Krona Pie Chart Interactive Graph](/GIFs/kronapie.gif)

@@ -1,0 +1,16 @@
+# MultiQC
+
+Now we use the *raw* results from FastQC to put into MultiQC to generate a combined quality score. 
+
+To do this: 
+
+1.  Go to Tools 
+2.  Type in and select MultiQC 
+3.  Under "Which tool was used" select `FastQC`
+4.  Click "Insert FastQC output"
+5.  Click "Browse or upload datasets" and select all of the "FastQC on dataset: RawData" - txt - files. 
+6.  Click Run 
+
+![Running MultiQC](GIFs/RunMultiQC.gif)
+
+

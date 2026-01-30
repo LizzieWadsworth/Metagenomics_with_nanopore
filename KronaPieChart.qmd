@@ -1,0 +1,13 @@
+# Krona Pie Chart 
+
+Now we're going to visualise our results. 
+
+From Tools select "Krona pie chart": 
+
+1.  Type of input data: Tabular 
+2.  Input file: Krakentools: Convert kraken report on collection
+3.  Provide a name for the basal rank: Bacteria 
+
+And select run. 
+
+![Krona pie chart setup](/images/kronapiesetup.png)

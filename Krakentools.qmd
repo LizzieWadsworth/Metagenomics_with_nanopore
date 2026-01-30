@@ -1,0 +1,13 @@
+# Krakentools
+
+Select the tool: **Krakentools: Convert kraken report file** to krona text file
+
+_Make sure you click the "to krona text file" version as there are a few!_
+
+1.  Kraken report file: Kraken2 on collection: _Report_
+
+All other options you can leave as default. 
+
+![Krakentools options](/images/krakentoolssetup.png)
+
+

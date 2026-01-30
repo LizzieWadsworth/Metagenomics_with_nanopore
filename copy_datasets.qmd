@@ -1,0 +1,12 @@
+---
+title: "Copy Datasets to your account"
+---
+
+I will have emailed you a link to the datasets from the project that you have chosen. We will have 2-4 samples from each paper. 
+
+To copy these to your own Galaxy History, click the link and then choose: "Import this History" in the top right hand corner. 
+
+![Screenshot of Import this History button](/images/Galaxy_Import_This_History.png)
+
+
+

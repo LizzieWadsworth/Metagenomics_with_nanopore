@@ -1,0 +1,15 @@
+# Kraken2
+
+Type and select "Kraken2" from tools, and then:
+
+1.  Single or paired reads: Select "Single" (as they are now merged)
+2.  Input sequences: Select collection (folder) and then "FastQ Groomer on collection"
+3.  Print scientific names instead of just taxids: Yes
+4.  Confidence: 0.1
+5.  Create report: 
+    - Print a report with aggregate counts/clade to file: Yes
+6.  Select a Kraken2 database: PlusPF (2021-05-17)
+
+Then run tool. 
+
+![Kraken2 output to file](/GIFs/kraken2.gif)

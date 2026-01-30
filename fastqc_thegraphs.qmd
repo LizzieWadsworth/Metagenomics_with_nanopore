@@ -1,0 +1,33 @@
+---
+lightbox: true
+---
+
+# The FastQC graphs
+
+FastQC creates a lot of graphs and some quality checks. The most important ones to look at are: 
+
+## Quality score
+
+![Quality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read](/images/fastqc_quality_score_1.png){group="my-gallery"}
+
+## Sequence length
+
+![Sequence Length - this tells us how long out sequences are in base pairs (bp)](/images/fastqc_sequence_length_1.png){group="my-gallery"}
+
+## Per base sequence content 
+
+This one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)
+
+As we're mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer. 
+
+This is also why sequence duplication and overrepresented sequences are particularly high. 
+
+![Per base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene](/images/fastqc_perbase_sequence_content_1.png){group="my-gallery"}
+
+## Adapter sequences
+
+There shouldn't be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step! 
+
+![Adapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples](/images/fastqc_adapter_1.png){group="my-gallery"}
+
+

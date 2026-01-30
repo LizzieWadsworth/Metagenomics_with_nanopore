@@ -1,0 +1,21 @@
+# Fastq format
+
+Our sequencing format has a quality score (how confident we are that each base is correct) as well as the sequence. 
+
+It can do this because all our sequences (in FastQ format) look like this: 
+```
+@SRR6185165.1/1
+TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCGACGCCGCGTGCGGGATGACGGCCTTCGGGTTGTAAACCGCTTTTGACTGGGAGCAAGCCCTTCGGGGTGAGTGTACCTTTCGAATAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTTGCAAGCGTTATCCGGTTTTATTGGGCGTAAAGTGCTCGTAGGCGGTTCGTCGCGTCCGGTGTGTTAGTCCCTCGCTTAA
++
+AAAABCCFFFFFGGGGGGGGGGGGGGGHGHH2GBGCFGE?AAAE0E0>>A0/>/E1CF1///?FGA//?F?E444B?/<CDFF2/?22//0///22/<<<FC///->-.0>1=1<0=D<D...<C0000:;--:;.0;CC9.;/9:90././9-9--9..;/999/../;..///..;A.;9/.--.;;/:9//.;9:-..////:9.;...9--;:.-99---:----;-:../9/;99/:.--;A./
+```
+
+Each sequence in a fastq file is 4 lines long:
+
+1.  Line 1: a header - a unique identifier for each read (begins with @)
+2.  Line 2: the DNA sequence
+3.  Line 3: a `+` to separate the sequence and quality scores
+4.  Line 4: the quality score for each base in the DNA sequence. There are more scores than there are letters, so a mix of letters numbers and symbols are used to code for the quality score. 
+
+We can use tools such as FastQC to visualise the quality scores across the whole sample - as we can't tell just by looking at them! 
+

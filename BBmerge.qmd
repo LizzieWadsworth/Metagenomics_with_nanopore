@@ -1,0 +1,34 @@
+# BBMerge 
+
+BBMerge from BBTools will allow us to merge the forward and reverse reads. This will: 
+
+-  Give us a longer read (~400 bp instead of 2 x 250 bp reads) 
+-  Use the **overlapping** regions at the end of each read to select the highest quality base for each position
+
+This is because our sequence quality drops at the end of the reads - and it is the ends of the forward and reverse reads that overlap - so effectively we've sequenced the lower-quality part twice and can use the two readings to increase the overall quality of the reads. 
+
+[Read more here about paired-end reads here.](https://microbenotes.com/paired-end-sequencing/)
+
+To run BBMerge, go to Tools and type in "BBTools: BBMerge", then select the options: 
+
+1.  Choose the category of the files to be analyzed: 
+    - "Paired data"
+2.  Collection of fastqsanger paired read files: 
+    -  CutAdapt on Collection: Reads
+    _This is your **result** from CutAdapt_ 
+
+Leave the rest of the options as default, and click Run. 
+
+The result will give you: 
+  
+-  BBTools: BBMerge on collection (unmerged reads) - all reads that _couldn't_ be merged, as they were too low quality 
+-  BBTools: BBMerge on collection (merged reads) - this is the result we want, our merged reads. 
+-  BBTools: BBMerge on collection (insert size histogram) - this is a table of values of final read length, which you could plot as a histogram in excel. 
+
+![BBMerge from BBTools](/GIFs/BBMerge.gif)
+
+The merged reads don't come out in quite the right format, so we then need to use FastQGroomer... 
+
+
+
+

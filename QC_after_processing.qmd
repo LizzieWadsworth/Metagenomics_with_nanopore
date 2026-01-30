@@ -1,0 +1,20 @@
+# QC after processing 
+
+Now we've done our preprocessing steps, we can redo the FastQC and MultiQC quality checks to see how our final read qualities are. 
+
+## What to use for inputs 
+
+For FastQC, use the the result from FastQGroomer as input. 
+
+![Input the results from FastQGroomer to FastQC](/images/FastQC_input_after_process.png)
+
+For MultiQC, select "FastQC", and then use select the FastQC on collection: RawData as input. 
+
+![Input the results from FastQC to MultiQC](/images/MultiQC_input_after_process.png)
+
+## Outputs 
+
+You should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high. 
+
+![MultiQC output after processing steps showing 400bp high quality reads](/images/multiqc_after_result.png)
+

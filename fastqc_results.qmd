@@ -1,0 +1,11 @@
+# View FastQC results
+
+Now FastQC has run, you can inspect the results. 
+
+It gives you two results - Raw Data and Website. You'll want to look at the Website results. 
+
+You can click the results for each read pair by clicking the "eye" icon. 
+
+![View FastQC GIF](GIFs/ViewFastQC.gif)
+
+However, this is a lot of graphs! We can use MultiQC to combine them. 

@@ -1,0 +1,353 @@
+[
+  {
+    "objectID": "inspect_sequences.html",
+    "href": "inspect_sequences.html",
+    "title": "Inspect sequences",
+    "section": "",
+    "text": "Inspect sequences\nThe history you’ve been given contains a collection of paired reads.\nEach sample is tagged with identifying information, for example:\n\n#Healey2018 (the paper)\n#HighFibre (the patient condition)\n#Prebiotic (the experimental condition)\n\nSome tags may have more or less information depending on how much information the paper had.\nEach sample is made up of two sequencing reads: a forward and reverse sequence. This is because sequencing quality decreases along the length of the reads, so we sequence each fragment of DNA in both directions.\nYou can view the individual read pairs by clicking the collection, and see the sequences by clicking the “eye” icon.\nYou don’t need to do anything further here - we’ll use tools to tell us about what these datasets look like.\n\n\n\nView Tags and Sequences",
+    "crumbs": [
+      "**Setting Up on Galaxy**",
+      "Inspect sequences"
+    ]
+  },
+  {
+    "objectID": "Krakentools.html",
+    "href": "Krakentools.html",
+    "title": "Krakentools",
+    "section": "",
+    "text": "Krakentools\nSelect the tool: Krakentools: Convert kraken report file to krona text file\nMake sure you click the “to krona text file” version as there are a few!\n\nKraken report file: Kraken2 on collection: Report\n\nAll other options you can leave as default.\n\n\n\nKrakentools options",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Krakentools"
+    ]
+  },
+  {
+    "objectID": "fastq.html",
+    "href": "fastq.html",
+    "title": "Fastq format",
+    "section": "",
+    "text": "Fastq format\nOur sequencing format has a quality score (how confident we are that each base is correct) as well as the sequence.\nIt can do this because all our sequences (in FastQ format) look like this:\n@SRR6185165.1/1\nTGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCGACGCCGCGTGCGGGATGACGGCCTTCGGGTTGTAAACCGCTTTTGACTGGGAGCAAGCCCTTCGGGGTGAGTGTACCTTTCGAATAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTTGCAAGCGTTATCCGGTTTTATTGGGCGTAAAGTGCTCGTAGGCGGTTCGTCGCGTCCGGTGTGTTAGTCCCTCGCTTAA\n+\nAAAABCCFFFFFGGGGGGGGGGGGGGGHGHH2GBGCFGE?AAAE0E0&gt;&gt;A0/&gt;/E1CF1///?FGA//?F?E444B?/&lt;CDFF2/?22//0///22/&lt;&lt;&lt;FC///-&gt;-.0&gt;1=1&lt;0=D&lt;D...&lt;C0000:;--:;.0;CC9.;/9:90././9-9--9..;/999/../;..///..;A.;9/.--.;;/:9//.;9:-..////:9.;...9--;:.-99---:----;-:../9/;99/:.--;A./\nEach sequence in a fastq file is 4 lines long:\n\nLine 1: a header - a unique identifier for each read (begins with @)\nLine 2: the DNA sequence\nLine 3: a + to separate the sequence and quality scores\nLine 4: the quality score for each base in the DNA sequence. There are more scores than there are letters, so a mix of letters numbers and symbols are used to code for the quality score.\n\nWe can use tools such as FastQC to visualise the quality scores across the whole sample - as we can’t tell just by looking at them!",
+    "crumbs": [
+      "**Quality Control**",
+      "Fastq format"
+    ]
+  },
+  {
+    "objectID": "BBmerge.html",
+    "href": "BBmerge.html",
+    "title": "BBMerge",
+    "section": "",
+    "text": "BBMerge\nBBMerge from BBTools will allow us to merge the forward and reverse reads. This will:\n\nGive us a longer read (~400 bp instead of 2 x 250 bp reads)\nUse the overlapping regions at the end of each read to select the highest quality base for each position\n\nThis is because our sequence quality drops at the end of the reads - and it is the ends of the forward and reverse reads that overlap - so effectively we’ve sequenced the lower-quality part twice and can use the two readings to increase the overall quality of the reads.\nRead more here about paired-end reads here.\nTo run BBMerge, go to Tools and type in “BBTools: BBMerge”, then select the options:\n\nChoose the category of the files to be analyzed:\n\n“Paired data”\n\nCollection of fastqsanger paired read files:\n\nCutAdapt on Collection: Reads This is your result from CutAdapt\n\n\nLeave the rest of the options as default, and click Run.\nThe result will give you:\n\nBBTools: BBMerge on collection (unmerged reads) - all reads that couldn’t be merged, as they were too low quality\nBBTools: BBMerge on collection (merged reads) - this is the result we want, our merged reads.\nBBTools: BBMerge on collection (insert size histogram) - this is a table of values of final read length, which you could plot as a histogram in excel.\n\n\n\n\nBBMerge from BBTools\n\n\nThe merged reads don’t come out in quite the right format, so we then need to use FastQGroomer…",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "BBMerge"
+    ]
+  },
+  {
+    "objectID": "CutAdapt.html",
+    "href": "CutAdapt.html",
+    "title": "CutAdapt",
+    "section": "",
+    "text": "CutAdapt\nTo run CutAdapt, go to Tools and Type in “CutAdapt”\nThen select these options:\n\nSingle-end or Paired-end reads?: Paired collection\n\nChoose your collection of Downloaded sequences as the input.\n\nIn “Other Read Trimming Options”\n\n“Quality cutoff(s) (R1)”: 20\n\nIn “Read Filtering Options”\n\n“Minimum length (R1)”: 20\n\nIn “Additional outputs to generate”: Report\n\nAfter CutAdapt has run, it will generate:\n\nCutAdapt Reads: The trimmed reads, which we will use in the next step\nCutAdapt Report: A report showing you how many reads were trimmed\n\n\n\n\nGIF of setting up CutAdapt\n\n\nNow we’ve trimmed the reads, we can merge them…",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "CutAdapt"
+    ]
+  },
+  {
+    "objectID": "Bracken.html",
+    "href": "Bracken.html",
+    "title": "Bracken",
+    "section": "",
+    "text": "Bracken will extract the species abundances from kraken2 output.\nSelect “Bracken” from tools:\n\nKraken report file: Kraken2 on collection: Report\nSelect a Kmer distribution: PlusPF (2021-05-17)\nLevel: Species\nProduce Kraken-Style Bracken report: Yes\n\n\n\n\nBracken setup options\n\n\n\n\nBracken will generate a report with the abundances of some of the species in the sample:\n\n\n\n\n\n\n\n\n\n\n\n\nname\ntaxonomy_id\ntaxonomy_lvl\nkraken_assigned_reads\nadded_reads\nnew_est_reads\nfraction_total_reads\n\n\n\n\nAnaerostipes hadrus\n649756\nS\n2844\n2017\n4861\n0.07864\n\n\nCoprococcus sp. ART55/1\n751585\nS\n2113\n1087\n3200\n0.05177\n\n\nCoprococcus comes\n410072\nS\n189\n326\n515\n0.00833",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Bracken"
+    ]
+  },
+  {
+    "objectID": "Bracken.html#braken-report",
+    "href": "Bracken.html#braken-report",
+    "title": "Bracken",
+    "section": "",
+    "text": "Bracken will generate a report with the abundances of some of the species in the sample:\n\n\n\n\n\n\n\n\n\n\n\n\nname\ntaxonomy_id\ntaxonomy_lvl\nkraken_assigned_reads\nadded_reads\nnew_est_reads\nfraction_total_reads\n\n\n\n\nAnaerostipes hadrus\n649756\nS\n2844\n2017\n4861\n0.07864\n\n\nCoprococcus sp. ART55/1\n751585\nS\n2113\n1087\n3200\n0.05177\n\n\nCoprococcus comes\n410072\nS\n189\n326\n515\n0.00833",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Bracken"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Metagenomics Online",
+    "section": "",
+    "text": "Welcome to the training and tutorials to guide you through your metagenomics online project!\nIn this book we will cover how to do bioinformatics analysis from data we have extracted from sample publications using the Galaxy project.\nClick through each page on the left for a description on how to use the tools!",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "multiqc_thegraphs.html",
+    "href": "multiqc_thegraphs.html",
+    "title": "The MultiQC Graphs",
+    "section": "",
+    "text": "The graphs for MultiQC are similar to those for FastQC but are combined for you reads. While we have paired reads, this will combine all forward reads and all reverse reads. We’ll do this again after we’ve merged the reads, which will give us one value for every sample.\n\n\nMultiQC gives you a useful overview of your samples:\n\n\n\nSample Name\nDups\nGC\nSeqs\n\n\n\n\nforward\n98.1%\n54.0%\n0.1M\n\n\nreverse\n98.1%\n53.0%\n0.1M\n\n\n\n\n\n\nA count of unique and duplicate reads. Because we’re looking at a PCR amplified genes, we expect lots of duplicates!\n\n\n\nSequence counts: Unique and duplicated reads. Most reads will be duplicated as we’re looking at a gene amplified by PCR\n\n\n\n\n\nMean quality scores for the reads.\n\n\n\nMean Quality Scores for the reads\n\n\n\n\n\nYou’ll also get a table of overrepresented sequences. These are all part of the conserved region of the 16S rRNA gene so are in all of our samples!\n\n\n\n\n\n\n\n\n\nOverrepresented sequence\nReports\nOccurrences\n% of all reads\n\n\n\n\nTGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCGACGCCGCGTGA\n1\n12710\n6.8571%\n\n\nTGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCGACGCCGCGTGC\n1\n8344\n4.5016%\n\n\nTGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCGACGCCGCGTGG\n1\n8176\n4.4110%\n\n\nTGAGGAATATTGGTCAATGGGCGAGAGCCTGAACCAGCCAAGTAGCGTGC\n1\n4569\n2.4650%",
+    "crumbs": [
+      "**Quality Control**",
+      "The MultiQC Graphs"
+    ]
+  },
+  {
+    "objectID": "multiqc_thegraphs.html#general-statistics",
+    "href": "multiqc_thegraphs.html#general-statistics",
+    "title": "The MultiQC Graphs",
+    "section": "",
+    "text": "MultiQC gives you a useful overview of your samples:\n\n\n\nSample Name\nDups\nGC\nSeqs\n\n\n\n\nforward\n98.1%\n54.0%\n0.1M\n\n\nreverse\n98.1%\n53.0%\n0.1M",
+    "crumbs": [
+      "**Quality Control**",
+      "The MultiQC Graphs"
+    ]
+  },
+  {
+    "objectID": "multiqc_thegraphs.html#sequence-counts",
+    "href": "multiqc_thegraphs.html#sequence-counts",
+    "title": "The MultiQC Graphs",
+    "section": "",
+    "text": "A count of unique and duplicate reads. Because we’re looking at a PCR amplified genes, we expect lots of duplicates!\n\n\n\nSequence counts: Unique and duplicated reads. Most reads will be duplicated as we’re looking at a gene amplified by PCR",
+    "crumbs": [
+      "**Quality Control**",
+      "The MultiQC Graphs"
+    ]
+  },
+  {
+    "objectID": "multiqc_thegraphs.html#fastqc-mean-quality-scores",
+    "href": "multiqc_thegraphs.html#fastqc-mean-quality-scores",
+    "title": "The MultiQC Graphs",
+    "section": "",
+    "text": "Mean quality scores for the reads.\n\n\n\nMean Quality Scores for the reads",
+    "crumbs": [
+      "**Quality Control**",
+      "The MultiQC Graphs"
+    ]
+  },
+  {
+    "objectID": "multiqc_thegraphs.html#overrepresented-sequences",
+    "href": "multiqc_thegraphs.html#overrepresented-sequences",
+    "title": "The MultiQC Graphs",
+    "section": "",
+    "text": "You’ll also get a table of overrepresented sequences. These are all part of the conserved region of the 16S rRNA gene so are in all of our samples!\n\n\n\n\n\n\n\n\n\nOverrepresented sequence\nReports\nOccurrences\n% of all reads\n\n\n\n\nTGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCGACGCCGCGTGA\n1\n12710\n6.8571%\n\n\nTGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCGACGCCGCGTGC\n1\n8344\n4.5016%\n\n\nTGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCGACGCCGCGTGG\n1\n8176\n4.4110%\n\n\nTGAGGAATATTGGTCAATGGGCGAGAGCCTGAACCAGCCAAGTAGCGTGC\n1\n4569\n2.4650%",
+    "crumbs": [
+      "**Quality Control**",
+      "The MultiQC Graphs"
+    ]
+  },
+  {
+    "objectID": "FastQGroomer.html",
+    "href": "FastQGroomer.html",
+    "title": "FastQ Groomer",
+    "section": "",
+    "text": "FastQ Groomer\nFollowing BBMerge, we need to reformat the reads using FastQ Groomer.\nFrom Tools, type in and select “FastQ Groomer”\nUnder “File to Groom”, select collection (folder) option: - Select your BBTools: BBMerge on collection (merged reads)\nMake sure you’ve chosen the merged and not the unmerged reads.\nKeep everything else as default, and then click Run.\n\n\n\nFastQ Groomer",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "FastQ Groomer"
+    ]
+  },
+  {
+    "objectID": "kraken2.html",
+    "href": "kraken2.html",
+    "title": "Kraken2",
+    "section": "",
+    "text": "Kraken2\nType and select “Kraken2” from tools, and then:\n\nSingle or paired reads: Select “Single” (as they are now merged)\nInput sequences: Select collection (folder) and then “FastQ Groomer on collection”\nPrint scientific names instead of just taxids: Yes\nConfidence: 0.1\nCreate report:\n\nPrint a report with aggregate counts/clade to file: Yes\n\nSelect a Kraken2 database: PlusPF (2021-05-17)\n\nThen run tool.\n\n\n\nKraken2 output to file",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Kraken2"
+    ]
+  },
+  {
+    "objectID": "KronaPieChart.html",
+    "href": "KronaPieChart.html",
+    "title": "Krona Pie Chart",
+    "section": "",
+    "text": "Krona Pie Chart\nNow we’re going to visualise our results.\nFrom Tools select “Krona pie chart”:\n\nType of input data: Tabular\nInput file: Krakentools: Convert kraken report on collection\nProvide a name for the basal rank: Bacteria\n\nAnd select run.\n\n\n\nKrona pie chart setup",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Krona Pie Chart"
+    ]
+  },
+  {
+    "objectID": "fastqc.html",
+    "href": "fastqc.html",
+    "title": "Run FastQC",
+    "section": "",
+    "text": "Run FastQC\nFastQC is a tool we can use to inspect the quality scores of our reads.\nTo do this:\n\nGo to Tools\nType in and select FastQC\nUnder “Raw read data” select the folder (collection) option and then your list of sequences\nSelect “Run Tool”\n\nI’ve made a GIF below to show you how to do this:\n\n\n\nRun FastQC Tool\n\n\nWhenever you run a tool it will be:\n\nGrey when it is waiting to run\nOrange while it is running\nGreen when it is done",
+    "crumbs": [
+      "**Quality Control**",
+      "Run FastQC"
+    ]
+  },
+  {
+    "objectID": "fastqc_results.html",
+    "href": "fastqc_results.html",
+    "title": "View FastQC results",
+    "section": "",
+    "text": "View FastQC results\nNow FastQC has run, you can inspect the results.\nIt gives you two results - Raw Data and Website. You’ll want to look at the Website results.\nYou can click the results for each read pair by clicking the “eye” icon.\n\n\n\nView FastQC GIF\n\n\nHowever, this is a lot of graphs! We can use MultiQC to combine them.",
+    "crumbs": [
+      "**Quality Control**",
+      "View FastQC results"
+    ]
+  },
+  {
+    "objectID": "kronapiechart_results.html",
+    "href": "kronapiechart_results.html",
+    "title": "Krona pie chart: Viewing the results",
+    "section": "",
+    "text": "Krona pie chart: Viewing the results\nKrona pie charts are interactive which means you can click between your different samples in the top left hand corner to compare them. You can also click onto one group to zoom into just that group.\nYou’ll notice the named labels start with a letter:\n\nk_ Kingdom (Bacteria)\np_ Phylum\nc_ Class\no_ Order\nf_ Family\ng_ Genus\ns_ Species\n\nThere is also a snapshot button to download each image.\nFrom here you can compare your samples - can you find any patterns? What could this mean, can you search for those groups and species in the literature?\n\n\n\nKrona Pie Chart Interactive Graph",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Krona pie chart: Viewing the results"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html",
+    "href": "fastqc_thegraphs.html",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "FastQC creates a lot of graphs and some quality checks. The most important ones to look at are:\n\n\n\n\n\nQuality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read\n\n\n\n\n\n\n\n\nSequence Length - this tells us how long out sequences are in base pairs (bp)\n\n\n\n\n\nThis one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)\nAs we’re mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer.\nThis is also why sequence duplication and overrepresented sequences are particularly high.\n\n\n\nPer base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene\n\n\n\n\n\nThere shouldn’t be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step!\n\n\n\nAdapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#quality-score",
+    "href": "fastqc_thegraphs.html#quality-score",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "Quality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#sequence-length",
+    "href": "fastqc_thegraphs.html#sequence-length",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "Sequence Length - this tells us how long out sequences are in base pairs (bp)",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#per-base-sequence-content",
+    "href": "fastqc_thegraphs.html#per-base-sequence-content",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "This one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)\nAs we’re mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer.\nThis is also why sequence duplication and overrepresented sequences are particularly high.\n\n\n\nPer base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#adapter-sequences",
+    "href": "fastqc_thegraphs.html#adapter-sequences",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "There shouldn’t be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step!\n\n\n\nAdapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "QC_after_processing.html",
+    "href": "QC_after_processing.html",
+    "title": "QC after processing",
+    "section": "",
+    "text": "Now we’ve done our preprocessing steps, we can redo the FastQC and MultiQC quality checks to see how our final read qualities are.\n\n\nFor FastQC, use the the result from FastQGroomer as input.\n\n\n\nInput the results from FastQGroomer to FastQC\n\n\nFor MultiQC, select “FastQC”, and then use select the FastQC on collection: RawData as input.\n\n\n\nInput the results from FastQC to MultiQC\n\n\n\n\n\nYou should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high.\n\n\n\nMultiQC output after processing steps showing 400bp high quality reads",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "QC after processing"
+    ]
+  },
+  {
+    "objectID": "QC_after_processing.html#what-to-use-for-inputs",
+    "href": "QC_after_processing.html#what-to-use-for-inputs",
+    "title": "QC after processing",
+    "section": "",
+    "text": "For FastQC, use the the result from FastQGroomer as input.\n\n\n\nInput the results from FastQGroomer to FastQC\n\n\nFor MultiQC, select “FastQC”, and then use select the FastQC on collection: RawData as input.\n\n\n\nInput the results from FastQC to MultiQC",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "QC after processing"
+    ]
+  },
+  {
+    "objectID": "QC_after_processing.html#outputs",
+    "href": "QC_after_processing.html#outputs",
+    "title": "QC after processing",
+    "section": "",
+    "text": "You should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high.\n\n\n\nMultiQC output after processing steps showing 400bp high quality reads",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "QC after processing"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Make an account on Galaxy",
+    "section": "",
+    "text": "Galaxy Project Logo\n\n\nThe first thing to do is to go to the galaxy project and make an account.\nMake a note of your Galaxy email address and password somewhere secure!\nThe Galaxy project is a free web-based tool for running bioinformatics analyses.\nIt runs on a remote computer which means you can run large jobs overnight and you don’t need to keep your own computer on, just check back later!",
+    "crumbs": [
+      "**Setting Up on Galaxy**",
+      "Make an account on Galaxy"
+    ]
+  },
+  {
+    "objectID": "Classifications_overview.html",
+    "href": "Classifications_overview.html",
+    "title": "Classification Overview",
+    "section": "",
+    "text": "Classification Overview\nNow we have our reads, we’re going to compare them to known bacterial 16S rRNA sequences and determine the phylogenetic groups.\nFor some species, we will have a unique read that can give us the exact species in the sample.\nHowever, for other species we might only be able to identify the genus as there might not be enough differences between species to uniquely identify them.\nFor some reads we won’t be able to classify them at all - uncategorised reads - because they isn’t enough known about these and so their sequences are not in the databases!\nWe’re going to use a few tools in our classification:\n\nKraken2 to compare our reads to a database of known sequences and output the proportions of reads belonging to each species or taxonomic group\nBraken to extract some of the species level output of Kraken2\nKrakentools to reformat the result from Kraken2 for Krona\nKrona to generate an interactive Krona Pie Chart to visualise our data\n\n\n\n\nKraken2 output to file",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Classification Overview"
+    ]
+  },
+  {
+    "objectID": "Why_preprocess.html",
+    "href": "Why_preprocess.html",
+    "title": "Why preprocess",
+    "section": "",
+    "text": "Why preprocess\nThe reads we have downloaded from the Sequence Nucleotide Archive or European Nucleotide Database are the raw results that have come out of the sequencing machine.\nWe need to process these reads to do a few things:\n\nCutAdapt: Remove any sequencing adapters from our reads\nCutAdapt: Trim low quality reads with CutAdapt, to remove possible sequencing errors.\nBBMerge: Merge our forward and reverse reads, to get one longer (and higher quality) read.\nFastQGroomer: Reformat the result from BBMerge to something we can use\nQC after processing: Rerun FastQC and MultiQC to get our quality after these processing steps.",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "Why preprocess"
+    ]
+  },
+  {
+    "objectID": "multiqc.html",
+    "href": "multiqc.html",
+    "title": "MultiQC",
+    "section": "",
+    "text": "MultiQC\nNow we use the raw results from FastQC to put into MultiQC to generate a combined quality score.\nTo do this:\n\nGo to Tools\nType in and select MultiQC\nUnder “Which tool was used” select FastQC\nClick “Insert FastQC output”\nClick “Browse or upload datasets” and select all of the “FastQC on dataset: RawData” - txt - files.\nClick Run\n\n\n\n\nRunning MultiQC",
+    "crumbs": [
+      "**Quality Control**",
+      "MultiQC"
+    ]
+  },
+  {
+    "objectID": "copy_datasets.html",
+    "href": "copy_datasets.html",
+    "title": "Copy Datasets to your account",
+    "section": "",
+    "text": "I will have emailed you a link to the datasets from the project that you have chosen. We will have 2-4 samples from each paper.\nTo copy these to your own Galaxy History, click the link and then choose: “Import this History” in the top right hand corner.\n\n\n\nScreenshot of Import this History button",
+    "crumbs": [
+      "**Setting Up on Galaxy**",
+      "Copy Datasets to your account"
+    ]
+  }
+]

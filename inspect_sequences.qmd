@@ -1,0 +1,21 @@
+# Inspect sequences 
+
+The history you've been given contains a **collection** of **paired** reads. 
+
+Each sample is tagged with identifying information, for example: 
+  
+- #Healey2018 (the paper)
+- #HighFibre (the patient condition)
+- #Prebiotic (the experimental condition)
+
+Some tags may have more or less information depending on how much information the paper had. 
+
+Each sample is made up of two sequencing reads: a forward and reverse sequence. This is because sequencing quality decreases along the length of the reads, so we sequence each fragment of DNA in both directions. 
+
+You can view the individual read pairs by clicking the collection, and see the sequences by clicking the "eye" icon. 
+
+You don't need to do anything further here - we'll use tools to tell us about what these datasets look like. 
+
+![View Tags and Sequences](GIFs/ViewSequencesAndTags.gif)
+
+

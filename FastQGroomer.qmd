@@ -1,0 +1,14 @@
+# FastQ Groomer 
+
+Following BBMerge, we need to reformat the reads using FastQ Groomer. 
+
+From Tools, type in and select "FastQ Groomer"
+
+Under "File to Groom", select collection (folder) option: 
+-  Select your BBTools: BBMerge on collection (**merged** reads)
+
+Make sure you've chosen the merged and not the unmerged reads. 
+
+Keep everything else as default, and then click Run. 
+
+![FastQ Groomer](/images/FastQGroomer.png)

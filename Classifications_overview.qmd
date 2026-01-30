@@ -1,0 +1,16 @@
+# Classification Overview
+
+Now we have our reads, we're going to compare them to known bacterial 16S rRNA sequences and determine the phylogenetic groups. 
+
+For some species, we will have a unique read that can give us the **exact species** in the sample. 
+
+However, for other species we might only be able to identify the **genus** as there might not be enough differences between species to uniquely identify them. 
+
+For some reads we won't be able to classify them at all - uncategorised reads - because they isn't enough known about these and so their sequences are not in the databases! 
+
+We're going to use a few tools in our classification: 
+  
+-  Kraken2 to compare our reads to a database of known sequences and output the proportions of reads belonging to each species or taxonomic group 
+-  Braken to extract some of the species level output of Kraken2
+-  Krakentools to reformat the result from Kraken2 for Krona 
+-  Krona to generate an interactive Krona Pie Chart to visualise our data 

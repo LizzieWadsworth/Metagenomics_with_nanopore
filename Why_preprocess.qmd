@@ -1,0 +1,11 @@
+# Why preprocess 
+
+The reads we have downloaded from the Sequence Nucleotide Archive or European Nucleotide Database are the **raw** results that have come out of the sequencing machine. 
+
+We need to process these reads to do a few things: 
+  
+-  CutAdapt: Remove any sequencing adapters from our reads 
+-  CutAdapt: Trim low quality reads with CutAdapt, to remove possible sequencing errors. 
+-  BBMerge: Merge our forward and reverse reads, to get one longer (and higher quality) read. 
+-  FastQGroomer: Reformat the result from BBMerge to something we can use 
+-  QC after processing: Rerun FastQC and MultiQC to get our quality after these processing steps. 

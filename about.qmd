@@ -1,0 +1,17 @@
+---
+title: "Make an account on Galaxy"
+---
+
+![Galaxy Project Logo](/images/galaxy_project_logo.jpg)
+
+The first thing to do is to [go to the galaxy project](https://usegalaxy.org/register/start) and make an account. 
+
+_Make a note of your Galaxy email address and password somewhere secure!_
+
+The Galaxy project is a free web-based tool for running bioinformatics analyses. 
+
+It runs on a _remote computer_ which means you can run large jobs overnight and you don't need to keep your own computer on, just check back later! 
+
+
+
+

@@ -1,0 +1,42 @@
+---
+lightbox: true
+---
+
+# The MultiQC Graphs
+
+The graphs for MultiQC are similar to those for FastQC but are combined for you reads. While we have paired reads, this will combine all forward reads and all reverse reads. We'll do this again after we've merged the reads, which will give us one value for every sample. 
+
+## General Statistics 
+
+MultiQC gives you a useful overview of your samples: 
+
+
+| Sample Name | Dups | GC  | Seqs |
+| --- | --- | --- | --- |
+forward | 	98.1% | 54.0% | 0.1M | 
+reverse	 | 98.1% | 53.0% | 0.1M | 
+
+## Sequence counts 
+
+A count of unique and duplicate reads. Because we're looking at a PCR amplified genes, we expect lots of duplicates! 
+
+![Sequence counts: Unique and duplicated reads. Most reads will be duplicated as we're looking at a gene amplified by PCR](/images/fastqc_sequence_counts_plot.png){group="my-gallery"}
+
+## FastQC: Mean Quality Scores 
+
+Mean quality scores for the reads. 
+
+![Mean Quality Scores for the reads](/images/fastqc_per_base_sequence_quality_plot.png){group="my-gallery"}
+
+## Overrepresented sequences 
+
+You'll also get a table of overrepresented sequences. These are all part of the **_conserved region_** of the 16S rRNA gene so are in all of our samples! 
+
+Overrepresented sequence | Reports | Occurrences | % of all reads | 
+| --- | --- | --- | --- |
+TGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCGACGCCGCGTGA	 | 1 | 12710 | 6.8571% |
+TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCGACGCCGCGTGC	 | 1 | 8344 | 4.5016% | 
+TGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCGACGCCGCGTGG	 | 1 | 8176 | 4.4110% | 
+TGAGGAATATTGGTCAATGGGCGAGAGCCTGAACCAGCCAAGTAGCGTGC	 | 1 | 4569 | 2.4650% |
+
+

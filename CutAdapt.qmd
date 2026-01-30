@@ -1,0 +1,22 @@
+# CutAdapt 
+
+To run CutAdapt, go to Tools and Type in "CutAdapt"
+
+Then select these options: 
+
+1.  Single-end or Paired-end reads?: Paired collection
+    -  Choose your collection of Downloaded sequences as the input. 
+2.  In “Other Read Trimming Options”
+    -  “Quality cutoff(s) (R1)”: 20
+3.  In “Read Filtering Options”
+    - “Minimum length (R1)”: 20
+4.  In “Additional outputs to generate”: Report
+
+After CutAdapt has run, it will generate: 
+  
+- CutAdapt Reads: The trimmed reads, which we will use in the next step 
+- CutAdapt Report: A report showing you how many reads were trimmed 
+
+![GIF of setting up CutAdapt](/GIFs/CutAdapt.gif)
+
+Now we've trimmed the reads, we can merge them... 

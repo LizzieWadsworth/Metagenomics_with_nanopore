@@ -1,0 +1,25 @@
+# Run FastQC
+
+FastQC is a tool we can use to inspect the quality scores of our reads. 
+
+To do this: 
+
+1.  Go to Tools 
+2.  Type in and select FastQC 
+3.  Under "Raw read data" select the folder (collection) option and then your list of sequences
+4.  Select "Run Tool"
+
+I've made a GIF below to show you how to do this: 
+
+![Run FastQC Tool](GIFs/RunFastQC.gif)
+
+Whenever you run a tool it will be: 
+  
+- Grey when it is waiting to run 
+- Orange while it is running 
+- Green when it is done 
+
+
+
+
+
