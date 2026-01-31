@@ -32,11 +32,12 @@ website:
             - href: CutAdapt.qmd
             - href: BBmerge.qmd
             - href: FastQGroomer.qmd 
-            - href: QC_after_processing.qmd 
+            - href: Illumina_QC_after_processing.qmd 
           - section: "**Nanopore read processing**"
             contents: 
             - href: Porechop.qmd
             - href: Fastp.qmd
+            - href: Nanopore_QC_after_processing.qmd
       - section: "**Classifying Taxonomy**"
         contents: 
           - href: Classifications_overview.qmd 

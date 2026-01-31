@@ -1,4 +1,4 @@
-# QC after processing 
+# Illumina QC after processing 
 
 Now we've done our preprocessing steps, we can redo the FastQC and MultiQC quality checks to see how our final read qualities are. 
 
@@ -17,4 +17,6 @@ For MultiQC, select "FastQC", and then use select the FastQC on collection: RawD
 You should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high. 
 
 ![MultiQC output after processing steps showing 400bp high quality reads](/images/multiqc_after_result.png)
+
+[Now you can move onto Taxonomic Classification](Classifications_overview.qmd)
 

@@ -233,8 +233,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./QC_after_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QC after processing</span></a>
+  <a href="./Illumina_QC_after_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Illumina QC after processing</span></a>
   </div>
 </li>
       </ul>
@@ -252,6 +252,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./Fastp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Fastp</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Nanopore_QC_after_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nanopore QC after processing</span></a>
   </div>
 </li>
       </ul>
@@ -327,6 +333,27 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="porechop" class="level1">
 <h1>Porechop</h1>
+<p>During nanopore sequencing, adapters are ligated onto the DNA fragments to guide them towards the sequencing pore. This is additional DNA that wasn’t present in our samples. We need to remove these, so that they don’t interfere with our alignments - they aren’t bacterial 16S genes and hence they wouldn’t match to the 16S gene database.</p>
+<p>To run Porechop, go to Tools and Type in “Porechop”</p>
+<p>Then select these options:</p>
+<ol type="1">
+<li>Input FASTA/FASTQ: Paired collection
+<ul>
+<li>Choose your collection of sequences as the input.</li>
+</ul></li>
+<li>In “Output format for the reads”
+<ul>
+<li>fastq</li>
+</ul></li>
+</ol>
+<p>After Porechop has run, it will generate a collection “Porechop on collection: Trimmed”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./GIFs/Porechop.gif" class="img-fluid figure-img"></p>
+<figcaption>GIF of setting up Porechop</figcaption>
+</figure>
+</div>
+<p>Now we’ve trimmed the adapters, we can filter for 1000-2000 bp reads…</p>
 
 
 </section>

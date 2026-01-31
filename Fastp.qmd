@@ -25,4 +25,13 @@ After Fastp has run, it will generate:
 
 ![GIF of setting up CutAdapt](/GIFs/Fastp.gif)
 
-Now we can do our quality control steps again to assess the processed reads. 
+The Fastp results will give you some tables with how many reads were filtered. These can go in the Appendix of your report. 
+
+## Filtering result example 
+
+| reads passed filters:	| 241.989000 K (95.079603%) |
+| --- | --- |
+| reads with low quality:	| 74 (0.029075%) |
+| reads with too many N:	| 0 (0.000000%) |
+| reads too short:	| 11.955000 K (4.697224%) |
+| reads too long:	| 494 (0.194097%) |

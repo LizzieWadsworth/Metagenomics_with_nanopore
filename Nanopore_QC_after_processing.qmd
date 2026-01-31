@@ -1,0 +1,23 @@
+# Nanopore QC after processing 
+
+Now we've done our preprocessing steps, we can redo the FastQC and MultiQC quality checks to see how our final read qualities are. 
+
+## What to use for inputs 
+
+For FastQC, use the the result from Fastp (Read 1 Output) as input. 
+
+![Input the results from FastQGroomer to FastQC](/images/FastQC_input_after_process_nanopore.png)
+
+For MultiQC, select "FastQC", and then use select the FastQC on collection: RawData as input. 
+
+![Input the results from FastQC to MultiQC](/images/MultiQC_input_after_process.png)
+
+## Outputs 
+
+You should get similar outputs that you did previously, but you should notice the reads are now only within the 1000-2000 bp range and the sequence quality remains high. 
+
+![MultiQC output after processing steps showing 1500bp high quality reads](/images/nanopore_afterfilter_multiqc.png)
+
+[Now you can move onto Taxonomic Classification](Classifications_overview.qmd)
+
+

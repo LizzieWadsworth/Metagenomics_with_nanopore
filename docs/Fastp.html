@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Classifications_overview.html" rel="next">
+<link href="./Nanopore_QC_after_processing.html" rel="next">
 <link href="./Porechop.qmd" rel="prev">
 <link href=".//images/bacteria_icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -235,8 +235,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./QC_after_processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QC after processing</span></a>
+  <a href="./Illumina_QC_after_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Illumina QC after processing</span></a>
   </div>
 </li>
       </ul>
@@ -254,6 +254,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./Fastp.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Fastp</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Nanopore_QC_after_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nanopore QC after processing</span></a>
   </div>
 </li>
       </ul>
@@ -317,7 +323,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#fastp" id="toc-fastp" class="nav-link active" data-scroll-target="#fastp">Fastp</a></li>
+  <li><a href="#fastp" id="toc-fastp" class="nav-link active" data-scroll-target="#fastp">Fastp</a>
+  <ul class="collapse">
+  <li><a href="#filtering-result-example" id="toc-filtering-result-example" class="nav-link" data-scroll-target="#filtering-result-example">Filtering result example</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -329,8 +338,79 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="fastp" class="level1">
 <h1>Fastp</h1>
+<p>To run Fastp, go to Tools and Type in “Fastp”</p>
+<p>Then select these options:</p>
+<ol type="1">
+<li>Single-end or Paired-end reads?: Single end
+<ul>
+<li>Choose the Porechop results as your input<br>
+</li>
+</ul></li>
+<li>In “Adapter Trimming Options”
+<ul>
+<li>“Disable adapter trimming”: yes</li>
+</ul></li>
+<li>In “Filter Options”
+<ul>
+<li>In Quality Filter options:
+<ul>
+<li>“Qualified quality phred”: 9</li>
+</ul></li>
+<li>In “Length filtering options”:
+<ul>
+<li>“Length required”: 1000</li>
+<li>“Maximum length”: 2000</li>
+</ul></li>
+</ul></li>
+<li>In “Read Modification Options”:
+<ul>
+<li>“PolyG tail trimming”: Disable polyG tail trimming</li>
+</ul></li>
+</ol>
+<p>After Fastp has run, it will generate:</p>
+<ul>
+<li>fastp on collection: Read 1 output - The filtered reads, which we will use in the next step</li>
+<li>fastp on collection: HTML Report: A report showing you how many reads were filtered</li>
+<li>fastp on collection: JSON report: A report in a different format, showing you how many reads were filtered</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./GIFs/Fastp.gif" class="img-fluid figure-img"></p>
+<figcaption>GIF of setting up CutAdapt</figcaption>
+</figure>
+</div>
+<p>The Fastp results will give you some tables with how many reads were filtered. These can go in the Appendix of your report.</p>
+<section id="filtering-result-example" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-result-example">Filtering result example</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>reads passed filters:</th>
+<th>241.989000 K (95.079603%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reads with low quality:</td>
+<td>74 (0.029075%)</td>
+</tr>
+<tr class="even">
+<td>reads with too many N:</td>
+<td>0 (0.000000%)</td>
+</tr>
+<tr class="odd">
+<td>reads too short:</td>
+<td>11.955000 K (4.697224%)</td>
+</tr>
+<tr class="even">
+<td>reads too long:</td>
+<td>494 (0.194097%)</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -741,8 +821,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Classifications_overview.html" class="pagination-link" aria-label="Classification Overview">
-        <span class="nav-page-text">Classification Overview</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Nanopore_QC_after_processing.html" class="pagination-link" aria-label="Nanopore QC after processing">
+        <span class="nav-page-text">Nanopore QC after processing</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
