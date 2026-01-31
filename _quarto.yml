@@ -27,10 +27,16 @@ website:
       - section: "**Preprocessing the reads**"
         contents: 
           - href: Why_preprocess.qmd
-          - href: CutAdapt.qmd
-          - href: BBmerge.qmd
-          - href: FastQGroomer.qmd 
-          - href: QC_after_processing.qmd 
+          - section: "**Illumina read processing**"
+            contents:
+            - href: CutAdapt.qmd
+            - href: BBmerge.qmd
+            - href: FastQGroomer.qmd 
+            - href: QC_after_processing.qmd 
+          - section: "**Nanopore read processing**"
+            contents: 
+            - href: Porechop.qmd
+            - href: Fastp.qmd
       - section: "**Classifying Taxonomy**"
         contents: 
           - href: Classifications_overview.qmd 

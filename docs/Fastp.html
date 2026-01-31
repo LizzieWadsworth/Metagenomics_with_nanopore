@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>why_preprocess – Metagenomics_Online</title>
+<title>fastp – Metagenomics_Online</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./CutAdapt.html" rel="next">
-<link href="./multiqc_thegraphs.html" rel="prev">
+<link href="./Classifications_overview.html" rel="next">
+<link href="./Porechop.qmd" rel="prev">
 <link href=".//images/bacteria_icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Why_preprocess.html" class="sidebar-item-text sidebar-link active">
+  <a href="./Why_preprocess.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Why preprocess</span></a>
   </div>
 </li>
@@ -243,16 +243,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>Nanopore read processing</strong></span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Fastp.html" class="sidebar-item-text sidebar-link">
+  <a href="./Fastp.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Fastp</span></a>
   </div>
 </li>
@@ -317,11 +317,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-preprocess" id="toc-why-preprocess" class="nav-link active" data-scroll-target="#why-preprocess">Why preprocess</a>
-  <ul class="collapse">
-  <li><a href="#illumina-short-reads" id="toc-illumina-short-reads" class="nav-link" data-scroll-target="#illumina-short-reads">Illumina short reads:</a></li>
-  <li><a href="#oxford-nanopore-long-reads" id="toc-oxford-nanopore-long-reads" class="nav-link" data-scroll-target="#oxford-nanopore-long-reads">Oxford Nanopore long reads:</a></li>
-  </ul></li>
+  <li><a href="#fastp" id="toc-fastp" class="nav-link active" data-scroll-target="#fastp">Fastp</a></li>
   </ul>
 </nav>
     </div>
@@ -331,29 +327,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="why-preprocess" class="level1">
-<h1>Why preprocess</h1>
-<p>The reads we have recieved from the sequencing company or downloaded from the Sequence Nucleotide Archive or European Nucleotide Database are the <strong>raw</strong> results that have come out of the sequencing machine.</p>
-<p>We need to process these reads to do a few things. How we process the reads depends on what <strong>type</strong> of reads we have.</p>
-<section id="illumina-short-reads" class="level2">
-<h2 class="anchored" data-anchor-id="illumina-short-reads">Illumina short reads:</h2>
-<ul>
-<li>CutAdapt: Remove any Illumina sequencing adapters from our reads</li>
-<li>CutAdapt: Trim low quality reads with CutAdapt, to remove possible sequencing errors.</li>
-<li>BBMerge: Merge our forward and reverse reads, to get one longer (and higher quality) read.</li>
-<li>FastQGroomer: Reformat the result from BBMerge to something we can use</li>
-<li>QC after processing: Rerun FastQC and MultiQC to get our quality after these processing steps.</li>
-</ul>
-</section>
-<section id="oxford-nanopore-long-reads" class="level2">
-<h2 class="anchored" data-anchor-id="oxford-nanopore-long-reads">Oxford Nanopore long reads:</h2>
-<ul>
-<li>Porechop: Remove any nanopore sequencing adapters from our reads</li>
-<li>fastp: Select only reads which are between 1000-2000 bp in length, and above a quality threshold</li>
-</ul>
+<section id="fastp" class="level1">
+<h1>Fastp</h1>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -759,13 +736,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./multiqc_thegraphs.html" class="pagination-link" aria-label="The MultiQC Graphs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">The MultiQC Graphs</span>
+      <a href="./Porechop.qmd" class="pagination-link" aria-label="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./CutAdapt.html" class="pagination-link" aria-label="CutAdapt">
-        <span class="nav-page-text">CutAdapt</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Classifications_overview.html" class="pagination-link" aria-label="Classification Overview">
+        <span class="nav-page-text">Classification Overview</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

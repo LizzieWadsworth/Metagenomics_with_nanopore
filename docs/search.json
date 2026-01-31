@@ -322,7 +322,7 @@
     "href": "Why_preprocess.html",
     "title": "Why preprocess",
     "section": "",
-    "text": "Why preprocess\nThe reads we have downloaded from the Sequence Nucleotide Archive or European Nucleotide Database are the raw results that have come out of the sequencing machine.\nWe need to process these reads to do a few things:\n\nCutAdapt: Remove any sequencing adapters from our reads\nCutAdapt: Trim low quality reads with CutAdapt, to remove possible sequencing errors.\nBBMerge: Merge our forward and reverse reads, to get one longer (and higher quality) read.\nFastQGroomer: Reformat the result from BBMerge to something we can use\nQC after processing: Rerun FastQC and MultiQC to get our quality after these processing steps.",
+    "text": "The reads we have recieved from the sequencing company or downloaded from the Sequence Nucleotide Archive or European Nucleotide Database are the raw results that have come out of the sequencing machine.\nWe need to process these reads to do a few things. How we process the reads depends on what type of reads we have.\n\n\n\nCutAdapt: Remove any Illumina sequencing adapters from our reads\nCutAdapt: Trim low quality reads with CutAdapt, to remove possible sequencing errors.\nBBMerge: Merge our forward and reverse reads, to get one longer (and higher quality) read.\nFastQGroomer: Reformat the result from BBMerge to something we can use\nQC after processing: Rerun FastQC and MultiQC to get our quality after these processing steps.\n\n\n\n\n\nPorechop: Remove any nanopore sequencing adapters from our reads\nfastp: Select only reads which are between 1000-2000 bp in length, and above a quality threshold",
     "crumbs": [
       "**Preprocessing the reads**",
       "Why preprocess"
@@ -348,6 +348,47 @@
     "crumbs": [
       "**Setting Up on Galaxy**",
       "Copy Datasets to your account"
+    ]
+  },
+  {
+    "objectID": "porechop.html",
+    "href": "porechop.html",
+    "title": "Porechop",
+    "section": "",
+    "text": "Porechop"
+  },
+  {
+    "objectID": "Fastp.html",
+    "href": "Fastp.html",
+    "title": "Fastp",
+    "section": "",
+    "text": "Fastp",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "**Nanopore read processing**",
+      "Fastp"
+    ]
+  },
+  {
+    "objectID": "Why_preprocess.html#illumina-short-reads",
+    "href": "Why_preprocess.html#illumina-short-reads",
+    "title": "Why preprocess",
+    "section": "",
+    "text": "CutAdapt: Remove any Illumina sequencing adapters from our reads\nCutAdapt: Trim low quality reads with CutAdapt, to remove possible sequencing errors.\nBBMerge: Merge our forward and reverse reads, to get one longer (and higher quality) read.\nFastQGroomer: Reformat the result from BBMerge to something we can use\nQC after processing: Rerun FastQC and MultiQC to get our quality after these processing steps.",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "Why preprocess"
+    ]
+  },
+  {
+    "objectID": "Why_preprocess.html#oxford-nanopore-long-reads",
+    "href": "Why_preprocess.html#oxford-nanopore-long-reads",
+    "title": "Why preprocess",
+    "section": "",
+    "text": "Porechop: Remove any nanopore sequencing adapters from our reads\nfastp: Select only reads which are between 1000-2000 bp in length, and above a quality threshold",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "Why preprocess"
     ]
   }
 ]
