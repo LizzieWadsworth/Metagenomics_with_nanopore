@@ -51,7 +51,7 @@
     "href": "Illumina_QC_after_processing.html",
     "title": "Illumina QC after processing",
     "section": "",
-    "text": "Now we’ve done our preprocessing steps, we can redo the FastQC and MultiQC quality checks to see how our final read qualities are.\n\n\nFor FastQC, use the the result from FastQGroomer as input.\n\n\n\nInput the results from FastQGroomer to FastQC\n\n\nFor MultiQC, select “FastQC”, and then use select the FastQC on collection: RawData as input.\n\n\n\nInput the results from FastQC to MultiQC\n\n\n\n\n\nYou should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high.\n\n\n\nMultiQC output after processing steps showing 400bp high quality reads",
+    "text": "Now we’ve done our preprocessing steps, we can redo the FastQC and MultiQC quality checks to see how our final read qualities are.\n\n\nFor FastQC, use the the result from FastQGroomer as input.\n\n\n\nInput the results from FastQGroomer to FastQC\n\n\nFor MultiQC, select “FastQC”, and then use select the FastQC on collection: RawData as input.\n\n\n\nInput the results from FastQC to MultiQC\n\n\n\n\n\nYou should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high.\n\n\n\nMultiQC output after processing steps showing 400bp high quality reads\n\n\nNow you can move onto Taxonomic Classification",
     "crumbs": [
       "**Preprocessing the reads**",
       "**Illumina read processing**",
@@ -75,7 +75,7 @@
     "href": "Illumina_QC_after_processing.html#outputs",
     "title": "Illumina QC after processing",
     "section": "",
-    "text": "You should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high.\n\n\n\nMultiQC output after processing steps showing 400bp high quality reads",
+    "text": "You should get similar outputs that you did previously, but you should notice the reads are longer and the sequence quality remains high.\n\n\n\nMultiQC output after processing steps showing 400bp high quality reads\n\n\nNow you can move onto Taxonomic Classification",
     "crumbs": [
       "**Preprocessing the reads**",
       "**Illumina read processing**",
@@ -374,7 +374,12 @@
     "href": "porechop.html",
     "title": "Porechop",
     "section": "",
-    "text": "Porechop\nDuring nanopore sequencing, adapters are ligated onto the DNA fragments to guide them towards the sequencing pore. This is additional DNA that wasn’t present in our samples. We need to remove these, so that they don’t interfere with our alignments - they aren’t bacterial 16S genes and hence they wouldn’t match to the 16S gene database.\nTo run Porechop, go to Tools and Type in “Porechop”\nThen select these options:\n\nInput FASTA/FASTQ: Paired collection\n\nChoose your collection of sequences as the input.\n\nIn “Output format for the reads”\n\nfastq\n\n\nAfter Porechop has run, it will generate a collection “Porechop on collection: Trimmed”\n\n\n\nGIF of setting up Porechop\n\n\nNow we’ve trimmed the adapters, we can filter for 1000-2000 bp reads…"
+    "text": "Porechop\nDuring nanopore sequencing, adapters are ligated onto the DNA fragments to guide them towards the sequencing pore. This is additional DNA that wasn’t present in our samples. We need to remove these, so that they don’t interfere with our alignments - they aren’t bacterial 16S genes and hence they wouldn’t match to the 16S gene database.\nTo run Porechop, go to Tools and Type in “Porechop”\nThen select these options:\n\nInput FASTA/FASTQ: Paired collection\n\nChoose your collection of sequences as the input.\n\nIn “Output format for the reads”\n\nfastq\n\n\nAfter Porechop has run, it will generate a collection “Porechop on collection: Trimmed”\n\n\n\nGIF of setting up Porechop\n\n\nNow we’ve trimmed the adapters, we can filter for 1000-2000 bp reads…",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "**Nanopore read processing**",
+      "Porechop"
+    ]
   },
   {
     "objectID": "BBmerge.html",

@@ -35,7 +35,7 @@ website:
             - href: Illumina_QC_after_processing.qmd 
           - section: "**Nanopore read processing**"
             contents: 
-            - href: Porechop.qmd
+            - href: porechop.qmd
             - href: Fastp.qmd
             - href: Nanopore_QC_after_processing.qmd
       - section: "**Classifying Taxonomy**"
