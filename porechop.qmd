@@ -1,1 +1,18 @@
 # Porechop
+
+During nanopore sequencing, adapters are ligated onto the DNA fragments to guide them towards the sequencing pore. This is additional DNA that wasn't present in our samples. We need to remove these, so that they don't interfere with our alignments - they aren't bacterial 16S genes and hence they wouldn't match to the 16S gene database.
+
+To run Porechop, go to Tools and Type in "Porechop"
+
+Then select these options: 
+
+1.  Input FASTA/FASTQ: Paired collection
+    -  Choose your collection of sequences as the input. 
+2.  In "Output format for the reads"
+    -  fastq
+
+After Porechop has run, it will generate a collection "Porechop on collection: Trimmed"
+  
+![GIF of setting up Porechop](/GIFs/Porechop.gif)
+
+Now we've trimmed the adapters, we can filter for 1000-2000 bp reads... 

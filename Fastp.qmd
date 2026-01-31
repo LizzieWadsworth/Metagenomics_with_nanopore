@@ -1,1 +1,28 @@
 # Fastp 
+
+To run Fastp, go to Tools and Type in "Fastp"
+
+Then select these options: 
+
+1.  Single-end or Paired-end reads?: Single end
+    -  Choose the Porechop results as your input  
+2.  In "Adapter Trimming Options”
+    -  “Disable adapter trimming”: yes
+3.  In "Filter Options”
+    - In Quality Filter options: 
+        - “Qualified quality phred”: 9
+    - In “Length filtering options”:
+        - “Length required”: 1000
+        - “Maximum length”: 2000
+4. In “Read Modification Options”:
+    - “PolyG tail trimming”: Disable polyG tail trimming
+
+After Fastp has run, it will generate: 
+  
+- fastp on collection: Read 1 output - The filtered reads, which we will use in the next step 
+- fastp on collection: HTML Report: A report showing you how many reads were filtered
+- fastp on collection: JSON report: A report in a different format, showing you how many reads were filtered 
+
+![GIF of setting up CutAdapt](/GIFs/Fastp.gif)
+
+Now we can do our quality control steps again to assess the processed reads. 
