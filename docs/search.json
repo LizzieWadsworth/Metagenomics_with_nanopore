@@ -40,7 +40,7 @@
     "href": "copy_datasets.html",
     "title": "Copy Datasets to your account",
     "section": "",
-    "text": "I will have emailed you a link to the datasets from the project that you have chosen. We will have 2-4 samples from each paper.\nTo copy these to your own Galaxy History, click the link and then choose: “Import this History” in the top right hand corner.\n\n\n\nScreenshot of Import this History button",
+    "text": "I will have emailed you a link to the sequencing reads from your samples. You will have 2-3 reads.\nTo copy these to your own Galaxy History, click the link and then choose: “Import this History” in the top right hand corner.\n\n\n\nScreenshot of Import this History button",
     "crumbs": [
       "**Setting Up on Galaxy**",
       "Copy Datasets to your account"
@@ -351,9 +351,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Metagenomics Online",
+    "title": "Metagenomics with Nanopore Sequencing",
     "section": "",
-    "text": "Welcome to the training and tutorials to guide you through your metagenomics online project!\nIn this book we will cover how to do bioinformatics analysis from data we have extracted from sample publications using the Galaxy project.\nClick through each page on the left for a description on how to use the tools!",
+    "text": "Welcome to the training and tutorials to guide you through your metagenomics bioinformatics analysis!\nIn this book we will cover how to do bioinformatics analysis from data we have generated following DNA extraction and sequencing.\nClick through each page on the left for a description on how to use the tools!",
     "crumbs": [
       "Home"
     ]
@@ -444,7 +444,7 @@
     "href": "inspect_sequences.html",
     "title": "Inspect sequences",
     "section": "",
-    "text": "Inspect sequences\nThe history you’ve been given contains a collection of paired reads.\nEach sample is tagged with identifying information, for example:\n\n#Healey2018 (the paper)\n#HighFibre (the patient condition)\n#Prebiotic (the experimental condition)\n\nSome tags may have more or less information depending on how much information the paper had.\nEach sample is made up of two sequencing reads: a forward and reverse sequence. This is because sequencing quality decreases along the length of the reads, so we sequence each fragment of DNA in both directions.\nYou can view the individual read pairs by clicking the collection, and see the sequences by clicking the “eye” icon.\nYou don’t need to do anything further here - we’ll use tools to tell us about what these datasets look like.\n\n\n\nView Tags and Sequences",
+    "text": "Inspect sequences\nThe history you’ve been given contains a collection of reads. Nanopore reads are single (one long read) and Illumina reads are paired (split into two, one forward and one reverse)\nEach sample is tagged with identifying information, for example:\n#LSD1 - Lizzie St Dunstan’s Meadow 1\nYou can view the individual reads by clicking the collection, and see the sequences by clicking the “eye” icon.\nYou don’t need to do anything further here - we’ll use tools to tell us about what these datasets look like.\n\n\n\nView Tags and Sequences",
     "crumbs": [
       "**Setting Up on Galaxy**",
       "Inspect sequences"

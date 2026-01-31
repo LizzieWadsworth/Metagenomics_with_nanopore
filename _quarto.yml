@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Metagenomics_Online"
+  title: "Metagenomics with Nanopore Sequencing"
   page-navigation: true
   bread-crumbs: false  
   favicon: /images/bacteria_icon.png

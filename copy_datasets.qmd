@@ -2,7 +2,7 @@
 title: "Copy Datasets to your account"
 ---
 
-I will have emailed you a link to the datasets from the project that you have chosen. We will have 2-4 samples from each paper. 
+I will have emailed you a link to the sequencing reads from your samples. You will have 2-3 reads. 
 
 To copy these to your own Galaxy History, click the link and then choose: "Import this History" in the top right hand corner. 
 

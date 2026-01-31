@@ -1,10 +1,10 @@
 ---
-title: "Metagenomics Online"
+title: "Metagenomics with Nanopore Sequencing"
 ---
 
-Welcome to the training and tutorials to guide you through your metagenomics online project! 
+Welcome to the training and tutorials to guide you through your metagenomics bioinformatics analysis! 
 
-In this book we will cover how to do bioinformatics analysis from data we have extracted from sample publications using the Galaxy project. 
+In this book we will cover how to do bioinformatics analysis from data we have generated following DNA extraction and sequencing. 
 
 Click through each page on the left for a description on how to use the tools! 
 
