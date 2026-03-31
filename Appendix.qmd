@@ -1,0 +1,11 @@
+# Appendix 
+
+To add your Galaxy data to the appendix of your report, you can share the entire history with us. 
+
+First, click the three horizontal lines in the top right corner. 
+
+Next, click "Share and manage access":
+
+Finally, click the "Make history accessible" button. After a few minutes, a url link will appear. **Copy and paste this link into your appendix** 
+
+![GIF of making history accessible link](GIFs/MakeHistoryAccessible.gif)

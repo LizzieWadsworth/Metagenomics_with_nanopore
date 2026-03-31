@@ -44,6 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -317,6 +320,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Krona pie chart: Viewing the results</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -351,14 +360,14 @@ ul.task-list li input[type="checkbox"] {
 <p>For FastQC, use the the result from Fastp (Read 1 Output) as input.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/FastQC_input_after_process_nanopore.png" class="img-fluid figure-img"></p>
+<p><a href="./images/FastQC_input_after_process_nanopore.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Input the results from FastQGroomer to FastQC"><img src="./images/FastQC_input_after_process_nanopore.png" class="img-fluid figure-img" alt="Input the results from FastQGroomer to FastQC"></a></p>
 <figcaption>Input the results from FastQGroomer to FastQC</figcaption>
 </figure>
 </div>
 <p>For MultiQC, select “FastQC”, and then use select the FastQC on collection: RawData as input.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/MultiQC_input_after_process.png" class="img-fluid figure-img"></p>
+<p><a href="./images/MultiQC_input_after_process.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Input the results from FastQC to MultiQC"><img src="./images/MultiQC_input_after_process.png" class="img-fluid figure-img" alt="Input the results from FastQC to MultiQC"></a></p>
 <figcaption>Input the results from FastQC to MultiQC</figcaption>
 </figure>
 </div>
@@ -368,7 +377,7 @@ ul.task-list li input[type="checkbox"] {
 <p>You should get similar outputs that you did previously, but you should notice the reads are now only within the 1000-2000 bp range and the sequence quality remains high.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/nanopore_afterfilter_multiqc.png" class="img-fluid figure-img"></p>
+<p><a href="./images/nanopore_afterfilter_multiqc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="MultiQC output after processing steps showing 1500bp high quality reads"><img src="./images/nanopore_afterfilter_multiqc.png" class="img-fluid figure-img" alt="MultiQC output after processing steps showing 1500bp high quality reads"></a></p>
 <figcaption>MultiQC output after processing steps showing 1500bp high quality reads</figcaption>
 </figure>
 </div>
@@ -792,6 +801,38 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

@@ -127,170 +127,48 @@
     ]
   },
   {
-    "objectID": "Classifications_overview.html",
-    "href": "Classifications_overview.html",
-    "title": "Classification Overview",
+    "objectID": "BBmerge.html",
+    "href": "BBmerge.html",
+    "title": "BBMerge",
     "section": "",
-    "text": "Classification Overview\nNow we have our reads, we’re going to compare them to known bacterial 16S rRNA sequences and determine the phylogenetic groups.\nFor some species, we will have a unique read that can give us the exact species in the sample.\nHowever, for other species we might only be able to identify the genus as there might not be enough differences between species to uniquely identify them.\nFor some reads we won’t be able to classify them at all - uncategorised reads - because they isn’t enough known about these and so their sequences are not in the databases!\nWe’re going to use a few tools in our classification:\n\nKraken2 to compare our reads to a database of known sequences and output the proportions of reads belonging to each species or taxonomic group\nBraken to extract some of the species level output of Kraken2\nKrakentools to reformat the result from Kraken2 for Krona\nKrona to generate an interactive Krona Pie Chart to visualise our data",
-    "crumbs": [
-      "**Classifying Taxonomy**",
-      "Classification Overview"
-    ]
-  },
-  {
-    "objectID": "CutAdapt.html",
-    "href": "CutAdapt.html",
-    "title": "CutAdapt",
-    "section": "",
-    "text": "CutAdapt\nTo run CutAdapt, go to Tools and Type in “CutAdapt”\nThen select these options:\n\nSingle-end or Paired-end reads?: Paired collection\n\nChoose your collection of Downloaded sequences as the input.\n\nIn “Other Read Trimming Options”\n\n“Quality cutoff(s) (R1)”: 20\n\nIn “Read Filtering Options”\n\n“Minimum length (R1)”: 20\n\nIn “Additional outputs to generate”: Report\n\nAfter CutAdapt has run, it will generate:\n\nCutAdapt Reads: The trimmed reads, which we will use in the next step\nCutAdapt Report: A report showing you how many reads were trimmed\n\n\n\n\nGIF of setting up CutAdapt\n\n\nNow we’ve trimmed the reads, we can merge them…",
+    "text": "BBMerge\nBBMerge from BBTools will allow us to merge the forward and reverse reads. This will:\n\nGive us a longer read (~400 bp instead of 2 x 250 bp reads)\nUse the overlapping regions at the end of each read to select the highest quality base for each position\n\nThis is because our sequence quality drops at the end of the reads - and it is the ends of the forward and reverse reads that overlap - so effectively we’ve sequenced the lower-quality part twice and can use the two readings to increase the overall quality of the reads.\nRead more here about paired-end reads here.\nTo run BBMerge, go to Tools and type in “BBTools: BBMerge”, then select the options:\n\nChoose the category of the files to be analyzed:\n\n“Paired data”\n\nCollection of fastqsanger paired read files:\n\nCutAdapt on Collection: Reads This is your result from CutAdapt\n\n\nLeave the rest of the options as default, and click Run.\nThe result will give you:\n\nBBTools: BBMerge on collection (unmerged reads) - all reads that couldn’t be merged, as they were too low quality\nBBTools: BBMerge on collection (merged reads) - this is the result we want, our merged reads.\nBBTools: BBMerge on collection (insert size histogram) - this is a table of values of final read length, which you could plot as a histogram in excel.\n\n\n\n\nBBMerge from BBTools\n\n\nThe merged reads don’t come out in quite the right format, so we then need to use FastQGroomer…",
     "crumbs": [
       "**Preprocessing the reads**",
       "**Illumina read processing**",
-      "CutAdapt"
+      "BBMerge"
     ]
   },
   {
-    "objectID": "Bracken.html",
-    "href": "Bracken.html",
-    "title": "Bracken",
+    "objectID": "porechop.html",
+    "href": "porechop.html",
+    "title": "Porechop",
     "section": "",
-    "text": "Bracken will extract the species abundances from kraken2 output.\nSelect “Bracken” from tools:\n\nKraken report file: Kraken2 on collection: Report\nSelect a Kmer distribution: PlusPF (2021-05-17)\nLevel: Species\nProduce Kraken-Style Bracken report: Yes\n\n\n\n\nBracken setup options\n\n\n\n\nBracken will generate a report with the abundances of some of the species in the sample:\n\n\n\n\n\n\n\n\n\n\n\n\nname\ntaxonomy_id\ntaxonomy_lvl\nkraken_assigned_reads\nadded_reads\nnew_est_reads\nfraction_total_reads\n\n\n\n\nAnaerostipes hadrus\n649756\nS\n2844\n2017\n4861\n0.07864\n\n\nCoprococcus sp. ART55/1\n751585\nS\n2113\n1087\n3200\n0.05177\n\n\nCoprococcus comes\n410072\nS\n189\n326\n515\n0.00833",
-    "crumbs": [
-      "**Classifying Taxonomy**",
-      "Bracken"
-    ]
-  },
-  {
-    "objectID": "Bracken.html#braken-report",
-    "href": "Bracken.html#braken-report",
-    "title": "Bracken",
-    "section": "",
-    "text": "Bracken will generate a report with the abundances of some of the species in the sample:\n\n\n\n\n\n\n\n\n\n\n\n\nname\ntaxonomy_id\ntaxonomy_lvl\nkraken_assigned_reads\nadded_reads\nnew_est_reads\nfraction_total_reads\n\n\n\n\nAnaerostipes hadrus\n649756\nS\n2844\n2017\n4861\n0.07864\n\n\nCoprococcus sp. ART55/1\n751585\nS\n2113\n1087\n3200\n0.05177\n\n\nCoprococcus comes\n410072\nS\n189\n326\n515\n0.00833",
-    "crumbs": [
-      "**Classifying Taxonomy**",
-      "Bracken"
-    ]
-  },
-  {
-    "objectID": "fastqc_thegraphs.html",
-    "href": "fastqc_thegraphs.html",
-    "title": "The FastQC graphs",
-    "section": "",
-    "text": "FastQC creates a lot of graphs and some quality checks. The most important ones to look at are:\n\n\n\n\n\nQuality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read\n\n\n\n\n\n\n\n\nSequence Length - this tells us how long out sequences are in base pairs (bp)\n\n\n\n\n\nThis one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)\nAs we’re mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer.\nThis is also why sequence duplication and overrepresented sequences are particularly high.\n\n\n\nPer base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene\n\n\n\n\n\nThere shouldn’t be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step!\n\n\n\nAdapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples",
-    "crumbs": [
-      "**Quality Control**",
-      "The FastQC graphs"
-    ]
-  },
-  {
-    "objectID": "fastqc_thegraphs.html#quality-score",
-    "href": "fastqc_thegraphs.html#quality-score",
-    "title": "The FastQC graphs",
-    "section": "",
-    "text": "Quality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read",
-    "crumbs": [
-      "**Quality Control**",
-      "The FastQC graphs"
-    ]
-  },
-  {
-    "objectID": "fastqc_thegraphs.html#sequence-length",
-    "href": "fastqc_thegraphs.html#sequence-length",
-    "title": "The FastQC graphs",
-    "section": "",
-    "text": "Sequence Length - this tells us how long out sequences are in base pairs (bp)",
-    "crumbs": [
-      "**Quality Control**",
-      "The FastQC graphs"
-    ]
-  },
-  {
-    "objectID": "fastqc_thegraphs.html#per-base-sequence-content",
-    "href": "fastqc_thegraphs.html#per-base-sequence-content",
-    "title": "The FastQC graphs",
-    "section": "",
-    "text": "This one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)\nAs we’re mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer.\nThis is also why sequence duplication and overrepresented sequences are particularly high.\n\n\n\nPer base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene",
-    "crumbs": [
-      "**Quality Control**",
-      "The FastQC graphs"
-    ]
-  },
-  {
-    "objectID": "fastqc_thegraphs.html#adapter-sequences",
-    "href": "fastqc_thegraphs.html#adapter-sequences",
-    "title": "The FastQC graphs",
-    "section": "",
-    "text": "There shouldn’t be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step!\n\n\n\nAdapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples",
-    "crumbs": [
-      "**Quality Control**",
-      "The FastQC graphs"
-    ]
-  },
-  {
-    "objectID": "kronapiechart_results.html",
-    "href": "kronapiechart_results.html",
-    "title": "Krona pie chart: Viewing the results",
-    "section": "",
-    "text": "Krona pie chart: Viewing the results\nKrona pie charts are interactive which means you can click between your different samples in the top left hand corner to compare them. You can also click onto one group to zoom into just that group.\nYou’ll notice the named labels start with a letter:\n\nk_ Kingdom (Bacteria)\np_ Phylum\nc_ Class\no_ Order\nf_ Family\ng_ Genus\ns_ Species\n\nThere is also a snapshot button to download each image.\nFrom here you can compare your samples - can you find any patterns? What could this mean, can you search for those groups and species in the literature?\n\n\n\nKrona Pie Chart Interactive Graph",
-    "crumbs": [
-      "**Classifying Taxonomy**",
-      "Krona pie chart: Viewing the results"
-    ]
-  },
-  {
-    "objectID": "fastqc_results.html",
-    "href": "fastqc_results.html",
-    "title": "View FastQC results",
-    "section": "",
-    "text": "View FastQC results\nNow FastQC has run, you can inspect the results.\nIt gives you two results - Raw Data and Website. You’ll want to look at the Website results.\nYou can click the results for each read pair by clicking the “eye” icon.\n\n\n\nView FastQC GIF\n\n\nHowever, this is a lot of graphs! We can use MultiQC to combine them.",
-    "crumbs": [
-      "**Quality Control**",
-      "View FastQC results"
-    ]
-  },
-  {
-    "objectID": "fastqc.html",
-    "href": "fastqc.html",
-    "title": "Run FastQC",
-    "section": "",
-    "text": "Run FastQC\nFastQC is a tool we can use to inspect the quality scores of our reads.\nTo do this:\n\nGo to Tools\nType in and select FastQC\nUnder “Raw read data” select the folder (collection) option and then your list of sequences\nSelect “Run Tool”\n\nI’ve made a GIF below to show you how to do this:\n\n\n\nRun FastQC Tool\n\n\nWhenever you run a tool it will be:\n\nGrey when it is waiting to run\nOrange while it is running\nGreen when it is done",
-    "crumbs": [
-      "**Quality Control**",
-      "Run FastQC"
-    ]
-  },
-  {
-    "objectID": "KronaPieChart.html",
-    "href": "KronaPieChart.html",
-    "title": "Krona Pie Chart",
-    "section": "",
-    "text": "Krona Pie Chart\nNow we’re going to visualise our results.\nFrom Tools select “Krona pie chart”:\n\nType of input data: Tabular\nInput file: Krakentools: Convert kraken report on collection\nProvide a name for the basal rank: Bacteria\n\nAnd select run.\n\n\n\nKrona pie chart setup",
-    "crumbs": [
-      "**Classifying Taxonomy**",
-      "Krona Pie Chart"
-    ]
-  },
-  {
-    "objectID": "kraken2.html",
-    "href": "kraken2.html",
-    "title": "Kraken2",
-    "section": "",
-    "text": "Kraken2\nType and select “Kraken2” from tools, and then:\n\nSingle or paired reads: Select “Single” (as they are now merged)\nInput sequences: Select collection (folder) and then “FastQ Groomer on collection”\nPrint scientific names instead of just taxids: Yes\nConfidence: 0.1\nCreate report:\n\nPrint a report with aggregate counts/clade to file: Yes\n\nSelect a Kraken2 database: PlusPF (2021-05-17)\n\nThen run tool.\n\n\n\nKraken2 output to file",
-    "crumbs": [
-      "**Classifying Taxonomy**",
-      "Kraken2"
-    ]
-  },
-  {
-    "objectID": "FastQGroomer.html",
-    "href": "FastQGroomer.html",
-    "title": "FastQ Groomer",
-    "section": "",
-    "text": "FastQ Groomer\nFollowing BBMerge, we need to reformat the reads using FastQ Groomer.\nFrom Tools, type in and select “FastQ Groomer”\nUnder “File to Groom”, select collection (folder) option: - Select your BBTools: BBMerge on collection (merged reads)\nMake sure you’ve chosen the merged and not the unmerged reads.\nKeep everything else as default, and then click Run.\n\n\n\nFastQ Groomer",
+    "text": "Porechop\nDuring nanopore sequencing, adapters are ligated onto the DNA fragments to guide them towards the sequencing pore. This is additional DNA that wasn’t present in our samples. We need to remove these, so that they don’t interfere with our alignments - they aren’t bacterial 16S genes and hence they wouldn’t match to the 16S gene database.\nTo run Porechop, go to Tools and Type in “Porechop”\nThen select these options:\n\nInput FASTA/FASTQ: Paired collection\n\nChoose your collection of sequences as the input.\n\nIn “Output format for the reads”\n\nfastq\n\n\nAfter Porechop has run, it will generate a collection “Porechop on collection: Trimmed”\n\n\n\nGIF of setting up Porechop\n\n\nNow we’ve trimmed the adapters, we can filter for 1000-2000 bp reads…",
     "crumbs": [
       "**Preprocessing the reads**",
-      "**Illumina read processing**",
-      "FastQ Groomer"
+      "**Nanopore read processing**",
+      "Porechop"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Make an account on Galaxy",
+    "section": "",
+    "text": "Galaxy Project Logo\n\n\nThe first thing to do is to go to the galaxy project and make an account.\nMake a note of your Galaxy email address and password somewhere secure!\nThe Galaxy project is a free web-based tool for running bioinformatics analyses.\nIt runs on a remote computer which means you can run large jobs overnight and you don’t need to keep your own computer on, just check back later!",
+    "crumbs": [
+      "**Setting Up on Galaxy**",
+      "Make an account on Galaxy"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Metagenomics with Nanopore Sequencing",
+    "section": "",
+    "text": "Welcome to the training and tutorials to guide you through your metagenomics bioinformatics analysis!\nIn this book we will cover how to do bioinformatics analysis from data we have generated following DNA extraction and sequencing.\nClick through each page on the left for a description on how to use the tools!",
+    "crumbs": [
+      "Home"
     ]
   },
   {
@@ -349,48 +227,181 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Metagenomics with Nanopore Sequencing",
+    "objectID": "FastQGroomer.html",
+    "href": "FastQGroomer.html",
+    "title": "FastQ Groomer",
     "section": "",
-    "text": "Welcome to the training and tutorials to guide you through your metagenomics bioinformatics analysis!\nIn this book we will cover how to do bioinformatics analysis from data we have generated following DNA extraction and sequencing.\nClick through each page on the left for a description on how to use the tools!",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Make an account on Galaxy",
-    "section": "",
-    "text": "Galaxy Project Logo\n\n\nThe first thing to do is to go to the galaxy project and make an account.\nMake a note of your Galaxy email address and password somewhere secure!\nThe Galaxy project is a free web-based tool for running bioinformatics analyses.\nIt runs on a remote computer which means you can run large jobs overnight and you don’t need to keep your own computer on, just check back later!",
-    "crumbs": [
-      "**Setting Up on Galaxy**",
-      "Make an account on Galaxy"
-    ]
-  },
-  {
-    "objectID": "porechop.html",
-    "href": "porechop.html",
-    "title": "Porechop",
-    "section": "",
-    "text": "Porechop\nDuring nanopore sequencing, adapters are ligated onto the DNA fragments to guide them towards the sequencing pore. This is additional DNA that wasn’t present in our samples. We need to remove these, so that they don’t interfere with our alignments - they aren’t bacterial 16S genes and hence they wouldn’t match to the 16S gene database.\nTo run Porechop, go to Tools and Type in “Porechop”\nThen select these options:\n\nInput FASTA/FASTQ: Paired collection\n\nChoose your collection of sequences as the input.\n\nIn “Output format for the reads”\n\nfastq\n\n\nAfter Porechop has run, it will generate a collection “Porechop on collection: Trimmed”\n\n\n\nGIF of setting up Porechop\n\n\nNow we’ve trimmed the adapters, we can filter for 1000-2000 bp reads…",
-    "crumbs": [
-      "**Preprocessing the reads**",
-      "**Nanopore read processing**",
-      "Porechop"
-    ]
-  },
-  {
-    "objectID": "BBmerge.html",
-    "href": "BBmerge.html",
-    "title": "BBMerge",
-    "section": "",
-    "text": "BBMerge\nBBMerge from BBTools will allow us to merge the forward and reverse reads. This will:\n\nGive us a longer read (~400 bp instead of 2 x 250 bp reads)\nUse the overlapping regions at the end of each read to select the highest quality base for each position\n\nThis is because our sequence quality drops at the end of the reads - and it is the ends of the forward and reverse reads that overlap - so effectively we’ve sequenced the lower-quality part twice and can use the two readings to increase the overall quality of the reads.\nRead more here about paired-end reads here.\nTo run BBMerge, go to Tools and type in “BBTools: BBMerge”, then select the options:\n\nChoose the category of the files to be analyzed:\n\n“Paired data”\n\nCollection of fastqsanger paired read files:\n\nCutAdapt on Collection: Reads This is your result from CutAdapt\n\n\nLeave the rest of the options as default, and click Run.\nThe result will give you:\n\nBBTools: BBMerge on collection (unmerged reads) - all reads that couldn’t be merged, as they were too low quality\nBBTools: BBMerge on collection (merged reads) - this is the result we want, our merged reads.\nBBTools: BBMerge on collection (insert size histogram) - this is a table of values of final read length, which you could plot as a histogram in excel.\n\n\n\n\nBBMerge from BBTools\n\n\nThe merged reads don’t come out in quite the right format, so we then need to use FastQGroomer…",
+    "text": "FastQ Groomer\nFollowing BBMerge, we need to reformat the reads using FastQ Groomer.\nFrom Tools, type in and select “FastQ Groomer”\nUnder “File to Groom”, select collection (folder) option: - Select your BBTools: BBMerge on collection (merged reads)\nMake sure you’ve chosen the merged and not the unmerged reads.\nKeep everything else as default, and then click Run.\n\n\n\nFastQ Groomer",
     "crumbs": [
       "**Preprocessing the reads**",
       "**Illumina read processing**",
-      "BBMerge"
+      "FastQ Groomer"
+    ]
+  },
+  {
+    "objectID": "kraken2.html",
+    "href": "kraken2.html",
+    "title": "Kraken2",
+    "section": "",
+    "text": "Kraken2\nType and select “Kraken2” from tools, and then:\n\nSingle or paired reads: Select “Single” (as they are now merged)\nInput sequences: Select collection (folder) and then “FastQ Groomer on collection”\nPrint scientific names instead of just taxids: Yes\nConfidence: 0.1\nCreate report:\n\nPrint a report with aggregate counts/clade to file: Yes\n\nSelect a Kraken2 database: PlusPF (2021-05-17)\n\nThen run tool.\n\n\n\nKraken2 output to file",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Kraken2"
+    ]
+  },
+  {
+    "objectID": "KronaPieChart.html",
+    "href": "KronaPieChart.html",
+    "title": "Krona Pie Chart",
+    "section": "",
+    "text": "Krona Pie Chart\nNow we’re going to visualise our results.\nFrom Tools select “Krona pie chart”:\n\nType of input data: Tabular\nInput file: Krakentools: Convert kraken report on collection\nProvide a name for the basal rank: Bacteria\n\nAnd select run.\n\n\n\nKrona pie chart setup",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Krona Pie Chart"
+    ]
+  },
+  {
+    "objectID": "fastqc.html",
+    "href": "fastqc.html",
+    "title": "Run FastQC",
+    "section": "",
+    "text": "Run FastQC\nFastQC is a tool we can use to inspect the quality scores of our reads.\nTo do this:\n\nGo to Tools\nType in and select FastQC\nUnder “Raw read data” select the folder (collection) option and then your list of sequences\nSelect “Run Tool”\n\nI’ve made a GIF below to show you how to do this:\n\n\n\nRun FastQC Tool\n\n\nWhenever you run a tool it will be:\n\nGrey when it is waiting to run\nOrange while it is running\nGreen when it is done",
+    "crumbs": [
+      "**Quality Control**",
+      "Run FastQC"
+    ]
+  },
+  {
+    "objectID": "fastqc_results.html",
+    "href": "fastqc_results.html",
+    "title": "View FastQC results",
+    "section": "",
+    "text": "View FastQC results\nNow FastQC has run, you can inspect the results.\nIt gives you two results - Raw Data and Website. You’ll want to look at the Website results.\nYou can click the results for each read pair by clicking the “eye” icon.\n\n\n\nView FastQC GIF\n\n\nHowever, this is a lot of graphs! We can use MultiQC to combine them.",
+    "crumbs": [
+      "**Quality Control**",
+      "View FastQC results"
+    ]
+  },
+  {
+    "objectID": "kronapiechart_results.html",
+    "href": "kronapiechart_results.html",
+    "title": "Krona pie chart: Viewing the results",
+    "section": "",
+    "text": "Krona pie chart: Viewing the results\nKrona pie charts are interactive which means you can click between your different samples in the top left hand corner to compare them. You can also click onto one group to zoom into just that group.\nYou’ll notice the named labels start with a letter:\n\nk_ Kingdom (Bacteria)\np_ Phylum\nc_ Class\no_ Order\nf_ Family\ng_ Genus\ns_ Species\n\nThere is also a snapshot button to download each image.\nFrom here you can compare your samples - can you find any patterns? What could this mean, can you search for those groups and species in the literature?\n\n\n\nKrona Pie Chart Interactive Graph",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Krona pie chart: Viewing the results"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html",
+    "href": "fastqc_thegraphs.html",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "FastQC creates a lot of graphs and some quality checks. The most important ones to look at are:\n\n\n\n\n\nQuality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read\n\n\n\n\n\n\n\n\nSequence Length - this tells us how long out sequences are in base pairs (bp)\n\n\n\n\n\nThis one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)\nAs we’re mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer.\nThis is also why sequence duplication and overrepresented sequences are particularly high.\n\n\n\nPer base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene\n\n\n\n\n\nThere shouldn’t be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step!\n\n\n\nAdapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#quality-score",
+    "href": "fastqc_thegraphs.html#quality-score",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "Quality score - what is the quality for each base in the sequence. Green region is high quality - tends to drop towards the end of the read",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#sequence-length",
+    "href": "fastqc_thegraphs.html#sequence-length",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "Sequence Length - this tells us how long out sequences are in base pairs (bp)",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#per-base-sequence-content",
+    "href": "fastqc_thegraphs.html#per-base-sequence-content",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "This one will typically fail if the reads you are looking at are a PCR product (which most metagenomics studies are!)\nAs we’re mostly looking for amplified 16S rRNA sequences, there will be a bias at the start of the read as they are all amplified by matching to the PCR primer.\nThis is also why sequence duplication and overrepresented sequences are particularly high.\n\n\n\nPer base sequence content - not unique at the start of the read as amplified by the same PCR primers in a conserved region of the 16S rRNA gene",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "fastqc_thegraphs.html#adapter-sequences",
+    "href": "fastqc_thegraphs.html#adapter-sequences",
+    "title": "The FastQC graphs",
+    "section": "",
+    "text": "There shouldn’t be any adapters - bits of DNA we add to get our target DNA onto the sequencing probes - in our sequences. Let me know if there is as we might need to add an adapter removal step!\n\n\n\nAdapter sequences detected - any detected adapters should be removed before analysis as they are added onto the sequences during sequencing, and are not from the initial samples",
+    "crumbs": [
+      "**Quality Control**",
+      "The FastQC graphs"
+    ]
+  },
+  {
+    "objectID": "Bracken.html",
+    "href": "Bracken.html",
+    "title": "Bracken",
+    "section": "",
+    "text": "Bracken will extract the species abundances from kraken2 output.\nSelect “Bracken” from tools:\n\nKraken report file: Kraken2 on collection: Report\nSelect a Kmer distribution: PlusPF (2021-05-17)\nLevel: Species\nProduce Kraken-Style Bracken report: Yes\n\n\n\n\nBracken setup options\n\n\n\n\nBracken will generate a report with the abundances of some of the species in the sample:\n\n\n\n\n\n\n\n\n\n\n\n\nname\ntaxonomy_id\ntaxonomy_lvl\nkraken_assigned_reads\nadded_reads\nnew_est_reads\nfraction_total_reads\n\n\n\n\nAnaerostipes hadrus\n649756\nS\n2844\n2017\n4861\n0.07864\n\n\nCoprococcus sp. ART55/1\n751585\nS\n2113\n1087\n3200\n0.05177\n\n\nCoprococcus comes\n410072\nS\n189\n326\n515\n0.00833",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Bracken"
+    ]
+  },
+  {
+    "objectID": "Bracken.html#braken-report",
+    "href": "Bracken.html#braken-report",
+    "title": "Bracken",
+    "section": "",
+    "text": "Bracken will generate a report with the abundances of some of the species in the sample:\n\n\n\n\n\n\n\n\n\n\n\n\nname\ntaxonomy_id\ntaxonomy_lvl\nkraken_assigned_reads\nadded_reads\nnew_est_reads\nfraction_total_reads\n\n\n\n\nAnaerostipes hadrus\n649756\nS\n2844\n2017\n4861\n0.07864\n\n\nCoprococcus sp. ART55/1\n751585\nS\n2113\n1087\n3200\n0.05177\n\n\nCoprococcus comes\n410072\nS\n189\n326\n515\n0.00833",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Bracken"
+    ]
+  },
+  {
+    "objectID": "CutAdapt.html",
+    "href": "CutAdapt.html",
+    "title": "CutAdapt",
+    "section": "",
+    "text": "CutAdapt\nTo run CutAdapt, go to Tools and Type in “CutAdapt”\nThen select these options:\n\nSingle-end or Paired-end reads?: Paired collection\n\nChoose your collection of Downloaded sequences as the input.\n\nIn “Other Read Trimming Options”\n\n“Quality cutoff(s) (R1)”: 20\n\nIn “Read Filtering Options”\n\n“Minimum length (R1)”: 20\n\nIn “Additional outputs to generate”: Report\n\nAfter CutAdapt has run, it will generate:\n\nCutAdapt Reads: The trimmed reads, which we will use in the next step\nCutAdapt Report: A report showing you how many reads were trimmed\n\n\n\n\nGIF of setting up CutAdapt\n\n\nNow we’ve trimmed the reads, we can merge them…",
+    "crumbs": [
+      "**Preprocessing the reads**",
+      "**Illumina read processing**",
+      "CutAdapt"
+    ]
+  },
+  {
+    "objectID": "Classifications_overview.html",
+    "href": "Classifications_overview.html",
+    "title": "Classification Overview",
+    "section": "",
+    "text": "Classification Overview\nNow we have our reads, we’re going to compare them to known bacterial 16S rRNA sequences and determine the phylogenetic groups.\nFor some species, we will have a unique read that can give us the exact species in the sample.\nHowever, for other species we might only be able to identify the genus as there might not be enough differences between species to uniquely identify them.\nFor some reads we won’t be able to classify them at all - uncategorised reads - because they isn’t enough known about these and so their sequences are not in the databases!\nWe’re going to use a few tools in our classification:\n\nKraken2 to compare our reads to a database of known sequences and output the proportions of reads belonging to each species or taxonomic group\nBraken to extract some of the species level output of Kraken2\nKrakentools to reformat the result from Kraken2 for Krona\nKrona to generate an interactive Krona Pie Chart to visualise our data",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Classification Overview"
+    ]
+  },
+  {
+    "objectID": "Appendix.html",
+    "href": "Appendix.html",
+    "title": "Appendix",
+    "section": "",
+    "text": "Appendix\nTo add your Galaxy data to the appendix of your report, you can share the entire history with us.\nFirst, click the three horizontal lines in the top right corner.\nNext, click “Share and manage access”:\nFinally, click the “Make history accessible” button. After a few minutes, a url link will appear. Copy and paste this link into your appendix\n\n\n\nGIF of making history accessible link",
+    "crumbs": [
+      "**Classifying Taxonomy**",
+      "Appendix"
     ]
   },
   {
